@@ -1,5 +1,4 @@
 root: /mnt/afs/grasp-sim/root/.objaverse
 category_root: /mnt/afs/grasp-sim/yanmi/graspsim-new-pipeline/data/objects/meta
-
-# output folder of processed data
-processed_folder: ${data.root}/processed_data
+input_template: ${data.root}/hf-objaverse-v1/organized_glbs/**.glb
+output_template: ${data.root}/hf-objaverse-v1/processed_data/**

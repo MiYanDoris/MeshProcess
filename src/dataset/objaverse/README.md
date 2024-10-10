@@ -7,14 +7,18 @@ pip install objaverse --upgrade --quiet
 pip install tqdm
 ```
 
-2. Change the root path in `src/config/data/objaverse.yaml`.
+2. Create soft link to change the dataset path for downloading. By default, the dataset will be downloaded to `~/.objaverse`. 
+
+```
+ln -s ${YOUR_PATH} ~/.objaverse
+```
 
 3. Download the subset according to the category annotation provided in [GObjaverse](https://aigc3d.github.io/gobjaverse/).
 ```
 python robust_download.py -c Daily-Used
 ```
 
-4. Save .obj file to a new folder.
+4. Organize the object folder by soft links.
 ```
-python glb2obj.py
+python organize.py
 ```

@@ -6,7 +6,7 @@ from glob import glob
 import objaverse
 SRC_FOLDER = os.path.join(os.path.dirname(__file__), '../..')
 sys.path.append(SRC_FOLDER)
-from util_file import load_yaml, load_json
+from util_file import load_yaml
 
 
 if __name__ == '__main__':
