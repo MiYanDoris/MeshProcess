@@ -21,10 +21,7 @@ def monitor_file(output_file, check_time):
         
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--category', type=str, required=True,
-        choices=['Human-Shape', 'Animals', 'Daily-Used', 'Furnitures',
-                'Buildings&&Outdoor', 'Transportations', 'Plants', 
-                'Food', 'Electronics', 'Poor-quality'])
+    parser.add_argument('-c', '--category', type=str, default='Food')
     parser.add_argument('-n', '--n_worker', type=int, default=10)
     parser.add_argument('-t', '--check_time', type=int, default=60)
     args = parser.parse_args()

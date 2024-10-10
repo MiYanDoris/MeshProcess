@@ -11,23 +11,16 @@ from util_file import load_yaml, load_json
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--category', type=str, required=True,
-        choices=['Human-Shape', 'Animals', 'Daily-Used', 'Furnitures',
-                'Buildings&&Outdoor', 'Transportations', 'Plants', 
-                'Food', 'Electronics', 'Poor-quality'])
+    parser.add_argument('-c', '--category', type=str, default='Food')
     parser.add_argument('-n', '--n_worker', type=int, default=10)
     args = parser.parse_args()
 
-    objaverse_root = load_yaml(os.path.join(SRC_FOLDER, 'config/data/objaverse.yaml'))['root']
-    
-    # Load category annotation
-    anno_path = os.path.join(objaverse_root, 'category_annotation.json')
-    if not os.path.exists(anno_path):
-        os.system(f'wget -O {anno_path} https://virutalbuy-public.oss-cn-hangzhou.aliyuncs.com/share/aigc3d/category_annotation.json')
-    anno = load_json(anno_path) 
+    meta_info = load_yaml(os.path.join(SRC_FOLDER, 'config/data/objaverse.yaml'))
+    objaverse_root = meta_info['root']
+    category_list = os.listdir(meta_info['category_root'])
 
-    # Filter out specific category
-    id_lst = [a['object_index'].split('.glb')[0] for a in anno if a['label'] == args.category]
+    if args.category not in category_list:
+        raise ValueError(f'Invalid category: {args.category}')
 
     # Remove previous failed objects
     fail_lst = glob(f'{objaverse_root}/hf-objaverse-v1/glbs/**/**.tmp')
@@ -35,6 +28,14 @@ if __name__ == '__main__':
         for fail_path in fail_lst:
             os.system(f'rm {fail_path}')
     
+    # Load object list
+    id_lst = []
+    subcategory_list = os.listdir(os.path.join(meta_info['category_root'], args.category, 'category_list'))
+    for subcategory_file in subcategory_list:
+        subcategory_path = os.path.join(meta_info['category_root'], args.category, 'category_list', subcategory_file)
+        with open(subcategory_path, 'r') as f:
+            id_lst.extend(f.read().splitlines())
+
     # Download
     objects = objaverse.load_objects(
         uids=id_lst,

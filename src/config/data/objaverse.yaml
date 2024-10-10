@@ -1,4 +1,5 @@
-root: /mnt/disk0/objaverse
+root: /mnt/afs/grasp-sim/root/.objaverse
+category_root: /mnt/afs/grasp-sim/yanmi/graspsim-new-pipeline/data/objects/meta
 
 # output folder of processed data
 processed_folder: ${data.root}/processed_data

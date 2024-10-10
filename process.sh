@@ -1,0 +1,1 @@
+python3 src/dataset/objaverse/robust_download.py -c Food
