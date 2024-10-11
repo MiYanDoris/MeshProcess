@@ -1,5 +1,5 @@
 # parallel worker number
-n_worker: 16    
+n_worker: 8
 
 # skip existing objects
 skip: True      

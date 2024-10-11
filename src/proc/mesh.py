@@ -9,6 +9,8 @@ from util_file import task_wrapper
 
 @task_wrapper
 def mesh_normalize(config):
+    if os.path.exists(config['output_path']):
+        return
     input_path, output_path = config['input_path'], config['output_path']
     tm_mesh = trimesh.load(input_path, force='mesh')
     verts = np.array(tm_mesh.vertices)
@@ -21,6 +23,8 @@ def mesh_normalize(config):
 
 @task_wrapper
 def mesh_convex_decomp(config):
+    if os.path.exists(config['output_path']):
+        return
     input_path, output_path, quiet = config['input_path'], config['output_path'], config['quiet']
     command = f'third_party/CoACD/build/main -i {input_path} -o {output_path}'
     if quiet:
@@ -31,6 +35,8 @@ def mesh_convex_decomp(config):
 
 @task_wrapper
 def mesh_manifold(config):
+    if os.path.exists(config['output_path']):
+        return
     input_path, output_path, quiet = config['input_path'], config['output_path'], config['quiet']
     command = f'third_party/CoACD/build/main -i {input_path} -ro {output_path} -pm on'
     if quiet:
@@ -41,6 +47,8 @@ def mesh_manifold(config):
 
 @task_wrapper
 def mesh_simplify(config):
+    if os.path.exists(config['output_path']):
+        return
     input_path, output_path, vert_num, gradation, quiet = config['input_path'], config['output_path'], config['vert_num'], config['gradation'], config['quiet']
     command = f'third_party/ACVD/bin/ACVD {input_path} {vert_num} {gradation} -o {os.path.dirname(output_path)+os.sep} -of {os.path.basename(output_path)} -m 1'
     if quiet:
@@ -52,6 +60,8 @@ def mesh_simplify(config):
 
 @task_wrapper
 def mesh_change_format(config):
+    if os.path.exists(config['output_path']):
+        return
     input_path, output_path, keep_material = config['input_path'], config['output_path'], config['keep_material']
     tm_mesh = trimesh.load(input_path, force='mesh')
     if not keep_material:

@@ -48,21 +48,3 @@
 1-get_basic_info:
   input_path: ${data.output_template}/mesh/simplified.obj
   output_path: ${data.output_template}/info/simplified.json
-
-# Processing point clouds
-1-get_complete_pc: 
-  input_path: ${data.output_template}/mesh/simplified.obj
-  output_path: ${data.output_template}/point_clouds/complete.npy
-  point_num: 4096
-
-# TODO 
-
-# get_tabletop_pose:
-#   input_path: mesh/simplified.obj
-#   output_path: info/tabletop_pose.json
-
-# render_partial_pc:
-#   input_path: mesh/simplified.obj
-#   output_path: point_clouds/kinect_partial
-
-
