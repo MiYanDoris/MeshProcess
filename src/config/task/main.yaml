@@ -8,11 +8,11 @@
 1-mesh_normalize:
   input_path: ${data.output_template}/mesh/raw.obj
   output_path: ${data.output_template}/mesh/normalized.obj
+  delete_input: True
 
 1-mesh_convex_decomp:
   input_path: ${data.output_template}/mesh/normalized.obj
   output_path: ${data.output_template}/mesh/coacd.obj
-  delete_input: True
   quiet: True
 
 1-export_urdf: 
