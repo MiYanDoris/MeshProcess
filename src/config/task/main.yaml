@@ -32,15 +32,15 @@
 
 1-mesh_simplify:
   input_path: ${data.output_template}/mesh/manifold.obj
-  output_path: ${data.output_template}/mesh/simplified.ply  # NOTE: this must be a ply
-  vert_num: 2000
+  output_path: ${data.output_template}/mesh/simplified_500.ply  # NOTE: this must be a ply
+  vert_num: 500
   gradation: 1.5    # This is recommanded in official repo
   delete_input: True
   quiet: True
 
 2-mesh_change_format: 
-  input_path: ${data.output_template}/mesh/simplified.ply
-  output_path: ${data.output_template}/mesh/simplified.obj  
+  input_path: ${data.output_template}/mesh/simplified_500.ply
+  output_path: ${data.output_template}/mesh/simplified_500.obj  
   keep_material: False
   delete_input: True
 
