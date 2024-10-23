@@ -11,16 +11,11 @@ from util_file import load_yaml
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--category', type=str, default='Food')
     parser.add_argument('-n', '--n_worker', type=int, default=10)
     args = parser.parse_args()
 
-    meta_info = load_yaml(os.path.join(SRC_FOLDER, 'config/data/objaverse.yaml'))
+    meta_info = load_yaml(os.path.join(SRC_FOLDER, 'config/data/objaverse_v1.yaml'))
     objaverse_root = meta_info['root']
-    category_list = os.listdir(meta_info['category_root'])
-
-    if args.category not in category_list:
-        raise ValueError(f'Invalid category: {args.category}')
 
     # Remove previous failed objects
     fail_lst = glob(f'{objaverse_root}/hf-objaverse-v1/glbs/**/**.tmp')
@@ -30,12 +25,13 @@ if __name__ == '__main__':
     
     # Load object list
     id_lst = []
-    subcategory_list = os.listdir(os.path.join(meta_info['category_root'], args.category, 'category_list'))
-    for subcategory_file in subcategory_list:
-        subcategory_path = os.path.join(meta_info['category_root'], args.category, 'category_list', subcategory_file)
-        with open(subcategory_path, 'r') as f:
+    category_list = os.listdir(meta_info['category_root'])
+    for category in category_list:
+        category_file = os.path.join(meta_info['category_root'], category)
+        with open(category_file, 'r') as f:
             id_lst.extend(f.read().splitlines())
 
+    print("There are", len(id_lst), "objects in all")
     # Download
     objects = objaverse.load_objects(
         uids=id_lst,

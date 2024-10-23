@@ -4,7 +4,7 @@ import multiprocessing
 import time 
 
 def download_process(run_file, args, output_file):
-    os.system(f'python -u {run_file} -c {args.category} -n {args.n_worker} > {output_file} 2>&1')
+    os.system(f'python -u {run_file} -n {args.n_worker} > {output_file} 2>&1')
     return 
 
 
@@ -21,7 +21,6 @@ def monitor_file(output_file, check_time):
         
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--category', type=str, default='Food')
     parser.add_argument('-n', '--n_worker', type=int, default=10)
     parser.add_argument('-t', '--check_time', type=int, default=60)
     args = parser.parse_args()
