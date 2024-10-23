@@ -37,4 +37,4 @@ if __name__ == '__main__':
         uids=id_lst,
         download_processes=args.n_worker
     )
-
+    print('[INFO] Finished downloading!!!!')
