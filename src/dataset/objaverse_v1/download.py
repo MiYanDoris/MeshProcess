@@ -2,6 +2,7 @@ import os
 import sys 
 import argparse
 from glob import glob
+import json
 
 import objaverse
 SRC_FOLDER = os.path.join(os.path.dirname(__file__), '../..')
@@ -24,12 +25,16 @@ if __name__ == '__main__':
             os.system(f'rm {fail_path}')
     
     # Load object list
-    id_lst = []
-    category_list = os.listdir(meta_info['category_root'])
-    for category in category_list:
-        category_file = os.path.join(meta_info['category_root'], category)
-        with open(category_file, 'r') as f:
-            id_lst.extend(f.read().splitlines())
+    # id_lst = []
+    # category_list = os.listdir(meta_info['category_root'])
+    # for category in category_list:
+    #     category_file = os.path.join(meta_info['category_root'], category)
+    #     with open(category_file, 'r') as f:
+    #         id_lst.extend(f.read().splitlines())
+
+    root_dir = '/mnt/afs/grasp-sim/data/objaverse'
+    valid_id_file = f'{root_dir}/strict_filter.json'
+    id_lst = json.load(open(valid_id_file, 'r'))
 
     print("There are", len(id_lst), "objects in all")
     # Download
