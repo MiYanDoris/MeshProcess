@@ -19,7 +19,7 @@
 1-mesh_remove_small_piece:
   input_path: ${data.output_template}/processed/coacd_raw.obj
   output_path: ${data.output_template}/processed/coacd.obj
-  min_volume: 1e-4
+  min_volume: 1e-5
 
 1-export_urdf: 
   input_path: ${data.output_template}/processed/coacd.obj

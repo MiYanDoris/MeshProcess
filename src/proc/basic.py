@@ -23,6 +23,23 @@ def get_basic_info(config):
                output_path)
     return 
 
+# get scale info
+@task_wrapper
+def get_scale_info(config):
+    input_path, output_path = config['input_path'], config['output_path']
+    output_dir_name = os.path.dirname(output_path)
+    os.makedirs(output_dir_name, exist_ok=True)
+    tm_mesh = trimesh.load(input_path, force='mesh')
+
+    verts = np.array(tm_mesh.vertices)
+    center = (np.max(verts, axis=0) + np.min(verts, axis=0)) / 2
+    length = np.linalg.norm(np.max(verts, axis=0) - np.min(verts, axis=0))
+    write_json({'center': center.tolist(),
+                'scale': length,
+                },
+               output_path)
+    return 
+
 # save complete point cloud
 @task_wrapper
 def get_complete_pc(config):

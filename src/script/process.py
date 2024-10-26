@@ -40,6 +40,12 @@ def main(cfg: DictConfig) -> None:
     suffix = cfg['data']['input_template'].split('**')[1] 
     obj_lst = [p.replace(prefix, '').replace(suffix, '') for p in full_path_lst]
 
+    obj_to_be_processed = []
+    for obj_id in obj_lst:
+        if not os.path.exists(cfg['task']['1-get_basic_info']['output_path'].replace('${data.output_template}', cfg['data']['output_template']).replace('**', obj_id)):
+            obj_to_be_processed.append(obj_id)
+    obj_lst = obj_to_be_processed[cfg['split_id']::cfg['total_split_num']]
+
     logger.info("#"*30)
     logger.info(f"Input template: {cfg['data']['input_template']}")
     logger.info(f"Output template: {cfg['data']['output_template']}")
@@ -54,7 +60,10 @@ def main(cfg: DictConfig) -> None:
         with multiprocessing.Pool(processes=cfg['n_worker']) as pool:
             result_iter = pool.imap_unordered(process_all, iterable_params)
             results = list(result_iter)
-    return 
+    with open('done.log', 'a') as f:
+        split_id = cfg['split_id']
+        f.write(f'[INFO] process {split_id} done\n')
+    return
 
 if __name__ == '__main__':
    main()

@@ -203,6 +203,7 @@ docker/pkgs/*
 docs/*
 
 output.txt
+process.txt
 *.log.lock
 outputs/
 example_data/

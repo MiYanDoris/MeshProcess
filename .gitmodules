@@ -1,6 +1,8 @@
 [submodule "third_party/ACVD"]
 	path = third_party/ACVD
 	url = git@github.com:valette/ACVD.git
+	ignore = dirty
+
 [submodule "third_party/CoACD"]
 	path = third_party/CoACD
 	url = git@github.com:JYChen18/CoACD.git
