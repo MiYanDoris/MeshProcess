@@ -32,9 +32,10 @@ if __name__ == '__main__':
     #     with open(category_file, 'r') as f:
     #         id_lst.extend(f.read().splitlines())
 
-    root_dir = '/mnt/afs/grasp-sim/data/objaverse'
-    valid_id_file = f'{root_dir}/strict_filter.json'
+    root_dir = '/mnt/afs/grasp-sim/data/objaverse/annotation'
+    valid_id_file = f'{root_dir}/strict_filter_v2.json'
     id_lst = json.load(open(valid_id_file, 'r'))
+    # id_lst = id_lst[:80000]
 
     print("There are", len(id_lst), "objects in all")
     # Download
