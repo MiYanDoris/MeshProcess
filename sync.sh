@@ -1,0 +1,2 @@
+/mnt/afs/grasp-sim/bin/ads-cli sync /mnt/afs/grasp-sim/root/.objaverse/hf-objaverse-v1/glbs/ s3://CD30BD88C49A46BEA74002BABEC64747:8A4426413F7F4B27B7C4FC2F27EABD75@grasp-render.aoss-internal.cn-sh-01b.sensecoreapi-oss.cn/objaverse/glbs/
+/mnt/afs/grasp-sim/bin/ads-cli sync s3://CD30BD88C49A46BEA74002BABEC64747:8A4426413F7F4B27B7C4FC2F27EABD75@grasp-render.aoss-internal.cn-sh-01b.sensecoreapi-oss.cn/objaverse/glbs/ /mnt/afs/grasp-sim/root/.objaverse/hf-objaverse-v1/glbs/

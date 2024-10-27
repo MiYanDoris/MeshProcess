@@ -29,7 +29,8 @@ def process_all(params):
             error_traceback = traceback.format_exc()
             logger.info(f'Failure! Task: {task_name}, obj: {obj_id} \n {error_traceback}')
             return
-    logger.info(f'Success! obj: {obj_id}')
+    with open('done.log', 'a') as f:
+        f.write(f'Success! obj: {obj_id}\n')
     return 
 
 @hydra.main(config_path="../config", config_name="base", version_base=None)

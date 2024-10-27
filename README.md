@@ -29,8 +29,9 @@ pip install lxml
 3. Build the third-party packages according to the guidance in [ACVD](https://github.com/valette/ACVD/tree/master?tab=readme-ov-file#simple-compilation-howto-under-linux)
 and [CoACD](https://github.com/SarahWeiii/CoACD?tab=readme-ov-file#3-compile). For ACVD, here is a guidance for installing the [VTK](https://www.vtk.org/) dependence:
 ```
-sudo apt-get update
-sudo apt install -y build-essential cmake git unzip qt5-default libqt5opengl5-dev libqt5x11extras5-dev libeigen3-dev libboost-all-dev libglew-dev libglvnd-dev
+apt-get update
+apt install -y build-essential cmake git unzip  libqt5opengl5-dev libqt5x11extras5-dev libeigen3-dev libboost-all-dev libglew-dev libglvnd-dev
+<!-- qt5-default -->
 
 git clone https://gitlab.kitware.com/vtk/vtk.git
 cd vtk
@@ -38,8 +39,8 @@ git checkout v9.2.0
 mkdir build
 cd build
 cmake ..
-make
-sudo make install
+make -j16
+make install
 export VTK_DIR=/usr/local/include/vtk-9.2
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 ``` 
