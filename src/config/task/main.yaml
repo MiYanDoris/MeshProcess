@@ -1,15 +1,9 @@
 # Processing mesh
 # NOTE: prefix 1- and 2- is used for avoiding duplicated task names
 
-1-get_scale_info:
+1-glb_to_mesh_and_normalize:
   input_path: ${data.input_template}
-  output_path: ${data.output_template}/info/scale.json
-
-1-mesh_change_format_and_normalize: 
-  input_path: ${data.input_template}
-  input_scale_path: ${data.output_template}/info/scale.json
-  output_path: ${data.output_template}/processed/normalized.obj  
-  keep_material: False
+  save_path: ${data.output_template}/processed/normalized.obj
 
 1-mesh_convex_decomp:
   input_path: ${data.output_template}/processed/normalized.obj

@@ -1,4 +1,4 @@
 root: /mnt/afs/grasp-sim/root/.objaverse/hf-objaverse-v1
 category_root: /mnt/afs/grasp-sim/yanmi/graspsim-new-pipeline/res/objaverse_category
 input_template: ${data.root}/organized_glbs/**.glb
-output_template: /mnt/afs/grasp-sim/data/objaverse/assets/**
+output_template: /mnt/afs/grasp-sim/data/objaverse-1400/assets/**
