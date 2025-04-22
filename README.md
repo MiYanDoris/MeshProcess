@@ -38,11 +38,11 @@ cd vtk
 git checkout v9.2.0     
 mkdir build
 cd build
-cmake ..
-make -j16
+cmake .. -DCMAKE_INSTALL_PREFIX=/mnt/afs/grasp-sim/yanmi
+make -j32
 make install
-export VTK_DIR=/usr/local/include/vtk-9.2
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export VTK_DIR=/mnt/afs/grasp-sim/yanmi/include/vtk-9.2
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mnt/afs/grasp-sim/yanmi/lib
 ``` 
 
 ## Mesh Data Preparing
