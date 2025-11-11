@@ -230,3 +230,19 @@ def mesh_change_format_and_normalize(config):
     tm_mesh.vertices = (verts - np.array(scale_info['center'])) / scale_info['scale']
     tm_mesh.export(output_path)
     return 
+
+
+@task_wrapper
+def normalize(config):
+    input_path, output_path, keep_material = config['input_path'], config['output_path'], config['keep_material']
+    tm_mesh = trimesh.load(input_path, force='mesh')
+    if not keep_material:
+        tm_mesh.visual = trimesh.visual.ColorVisuals()  
+    
+    center = (np.max(tm_mesh.vertices, axis=0) + np.min(tm_mesh.vertices, axis=0)) / 2
+    length = np.linalg.norm(np.max(tm_mesh.vertices, axis=0) - np.min(tm_mesh.vertices, axis=0)) / 2
+    scale_info = {'center': center.tolist(), 'scale': length}
+    verts = np.array(tm_mesh.vertices)
+    tm_mesh.vertices = (verts - np.array(scale_info['center'])) / scale_info['scale']
+    tm_mesh.export(output_path)
+    return 
