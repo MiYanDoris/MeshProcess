@@ -1,0 +1,2 @@
+input_template: /mnt/project/simvla/data/raw_glbs/**.glb
+output_template: /mnt/project/simvla/data/mesh_assets/assets/**

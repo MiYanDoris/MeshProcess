@@ -1,9 +1,10 @@
 # Processing mesh
 # NOTE: prefix 1- and 2- is used for avoiding duplicated task names
 
-1-glb_to_mesh_and_normalize:
+1-normalize:
   input_path: ${data.input_template}
-  save_path: ${data.output_template}/processed/normalized.obj
+  output_path: ${data.output_template}/processed/normalized.obj
+  keep_material: True
 
 1-mesh_convex_decomp:
   input_path: ${data.output_template}/processed/normalized.obj
@@ -13,7 +14,7 @@
 1-mesh_remove_small_piece:
   input_path: ${data.output_template}/processed/coacd_raw.obj
   output_path: ${data.output_template}/processed/coacd.obj
-  min_volume: 1e-5
+  min_volume: 1e-3
 
 1-export_urdf: 
   input_path: ${data.output_template}/processed/coacd.obj

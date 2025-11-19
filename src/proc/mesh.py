@@ -37,12 +37,12 @@ def mesh_remove_small_piece(config):
     input_path, output_path, min_volume = config["input_path"], config["output_path"], config['min_volume']
     parts = trimesh.load(input_path, force='mesh').split()
     # print(len(parts))
-    # for part in parts:
-    #     if part.volume < min_volume:
-    #         print('-' * 20)
-    #         print(part)
-    #         print(part.volume)
-    #         parts.remove(part)
+    for part in parts:
+        if part.volume < min_volume:
+            print('-' * 20)
+            print(part)
+            print(part.volume)
+            parts.remove(part)
     new_mesh = trimesh.util.concatenate(parts)
     new_mesh_vertices = new_mesh.vertices
 

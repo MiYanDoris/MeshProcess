@@ -1,4 +1,5 @@
-third_party/ACVD
+third_party/
+third_party/ACVD/
 .vscode*
 *.hdf5
 *.bat

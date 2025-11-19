@@ -32,17 +32,20 @@ if __name__ == '__main__':
     #     with open(category_file, 'r') as f:
     #         id_lst.extend(f.read().splitlines())
 
-    root_dir = '/mnt/afs/grasp-sim/data/objaverse/annotation'
-    valid_id_file = f'{root_dir}/strict_filter_v2.json'
-    id_lst = json.load(open(valid_id_file, 'r'))
+    # root_dir = '/mnt/afs/grasp-sim/data/objaverse/annotation'
+    # valid_id_file = f'{root_dir}/strict_filter_v2.json'
+    # id_lst = json.load(open(valid_id_file, 'r'))
 
-    # get downloaded list
-    id_lst_L40 = json.load(open('downloaded_object_ids-L40.json', 'r'))
-    id_lst_4090 = json.load(open('downloaded_object_ids-4090.json', 'r'))
-    id_lst = list(set(id_lst) - set(id_lst_L40) - set(id_lst_4090))
+    # # get downloaded list
+    # id_lst_L40 = json.load(open('downloaded_object_ids-L40.json', 'r'))
+    # id_lst_4090 = json.load(open('downloaded_object_ids-4090.json', 'r'))
+    # id_lst = list(set(id_lst) - set(id_lst_L40) - set(id_lst_4090))
 
-    # id_lst = id_lst[:50000]
-    id_lst = id_lst[50000:]
+    # # id_lst = id_lst[:50000]
+    # id_lst = id_lst[50000:]
+
+    with open('/mnt/afs/grasp-sim/yanmi/MeshProcess/plate.txt', 'r') as fp:
+        id_lst = fp.read().splitlines()
 
     print("There are", len(id_lst), "objects in all")
     # Download
